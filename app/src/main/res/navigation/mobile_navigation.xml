@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.els.myapplication.ui.main.fragment.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_leaveFragment"
+            app:destination="@id/leaveFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_function"
+        android:name="com.els.myapplication.ui.main.fragment.MessageFragment"
+        android:label="@string/title_message"
+        tools:layout="@layout/fragment_message" />
+
+    <fragment
+        android:id="@+id/navigation_user"
+        android:name="com.els.myapplication.ui.main.fragment.UserFragment"
+        android:label="@string/title_user"
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_navigation_user_to_employeeFragment"
+            app:destination="@id/employeeFragment" />
+        <action
+            android:id="@+id/action_navigation_user_to_leaveFragment"
+            app:destination="@id/leaveFragment" />
+        <action
+            android:id="@+id/action_navigation_user_to_manageLeaveFragment"
+            app:destination="@id/manageLeaveFragment" />
+        <action
+            android:id="@+id/action_navigation_user_to_infromFragment"
+            app:destination="@id/infromFragment" />
+        <action
+            android:id="@+id/action_navigation_user_to_projectHomeFragment"
+            app:destination="@id/projectHomeFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/employeeFragment"
+        android:name="com.els.myapplication.ui.main.fragment.EmployeeFragment"
+        android:label="EmployeeFragment" />
+    <fragment
+        android:id="@+id/leaveFragment"
+        android:name="com.els.myapplication.ui.main.fragment.LeaveFragment"
+        android:label="LeaveFragment" />
+    <fragment
+        android:id="@+id/manageLeaveFragment"
+        android:name="com.els.myapplication.ui.main.fragment.ManageLeaveFragment"
+        android:label="fragment_manage_leave"
+        tools:layout="@layout/fragment_manage_leave" />
+    <fragment
+        android:id="@+id/infromFragment"
+        android:name="com.els.myapplication.ui.main.fragment.InformFragment"
+        android:label="fragment_infrom"
+        tools:layout="@layout/fragment_infrom" />
+    <fragment
+        android:id="@+id/projectHomeFragment"
+        android:name="com.els.myapplication.ui.main.fragment.ProjectHomeFragment"
+        android:label="fragment_project_home"
+        tools:layout="@layout/fragment_project_home" >
+        <action
+            android:id="@+id/action_projectHomeFragment_to_projectCreateFragment"
+            app:destination="@id/projectCreateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectCreateFragment"
+        android:name="com.els.myapplication.ui.main.fragment.ProjectCreateFragment"
+        android:label="fragment_project_create"
+        tools:layout="@layout/fragment_project_create" />
+</navigation>

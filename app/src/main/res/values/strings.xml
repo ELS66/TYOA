@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">TYOA</string>
+    <string name="title_home">首页</string>
+    <string name="title_user">我的</string>
+    <string name="title_message">消息</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="repas">记住密码</string>
+    <string name="login">登录</string>
+    <string name="user">用户名</string>
+    <string name="toast_login">请输入帐号或者密码</string>
+    <string name="project_create_name_text">项目名称:</string>
+    <string name="project_create_name_edit_hint">请输入项目名称</string>
+    <string name="project_create_manage_text">项目管理：</string>
+    <string name="project_create_employee_text">项目人员:</string>
+    <string name="project_create_employee_spinner_hint">请选择工作人员</string>
+    <string name="project_create_manage_spinner_hint">请选择管理人员</string>
+    <string name="project_create_button_text">建立项目</string>
+</resources>
