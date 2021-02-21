@@ -18,27 +18,29 @@ import com.els.myapplication.bean.MyItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectHomeFragment extends Fragment {
+
+public class EquipmentHomeFragment extends Fragment {
 
     List<MyItem> itemList = new ArrayList<>();
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemList.add(new MyItem("创建项目",R.drawable.item_set,R.drawable.item_to));
-        itemList.add(new MyItem("管理项目",R.drawable.item_set,R.drawable.item_to));
+        itemList.add(new MyItem("添加设备",R.drawable.item_set,R.drawable.item_to));
+        itemList.add(new MyItem("管理设备",R.drawable.item_set,R.drawable.item_to));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_project_home, container, false);
+        View root =inflater.inflate(R.layout.fragment_equipment_home, container, false);
         init(root);
         return root;
     }
 
     private void init(View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_project);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_equipment_home);
         MyAdapter myAdapter = new MyAdapter();
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));

@@ -42,6 +42,7 @@ public class UserFragment extends Fragment {
         itemBossList.add(new MyItem("请假管理",R.drawable.item_set,R.drawable.item_to));
         itemBossList.add(new MyItem("通知",R.drawable.item_set,R.drawable.item_set));
         itemBossList.add(new MyItem("项目",R.drawable.item_set,R.drawable.item_to));
+        itemBossList.add(new MyItem("设备",R.drawable.item_set,R.drawable.item_to));
         user = MainActivity.user;
     }
 

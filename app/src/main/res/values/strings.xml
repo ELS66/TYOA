@@ -20,9 +20,19 @@
     <string name="toast_login">请输入帐号或者密码</string>
     <string name="project_create_name_text">项目名称:</string>
     <string name="project_create_name_edit_hint">请输入项目名称</string>
-    <string name="project_create_manage_text">项目管理：</string>
+    <string name="project_create_manage_text">项目管理:</string>
     <string name="project_create_employee_text">项目人员:</string>
     <string name="project_create_employee_spinner_hint">请选择工作人员</string>
     <string name="project_create_manage_spinner_hint">请选择管理人员</string>
     <string name="project_create_button_text">建立项目</string>
+    <string name="project_show_equipmentlist">设备列表</string>
+    <string name="equipment_create_id">设备Uid</string>
+    <string name="equipment_create_name">设备名称</string>
+    <string name="equipment_create_model">设备种类</string>
+    <string name="equipment_create_button">添加设备</string>
+    <string name="equipment_create_toast">点击二维码保存到手机</string>
+    <string name="scan">扫码</string>
+    <string name="equipment_show_text">所在项目</string>
+    <string name="yes">确定</string>
+
 </resources>

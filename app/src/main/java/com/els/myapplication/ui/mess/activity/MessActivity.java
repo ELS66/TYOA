@@ -16,6 +16,7 @@ import com.els.myapplication.Constant;
 import com.els.myapplication.R;
 import com.els.myapplication.bean.MessItem;
 import com.els.myapplication.ui.mess.fragmnet.MessInformFragment;
+import com.els.myapplication.ui.mess.fragmnet.MessLeaveFeedbankFragment;
 import com.els.myapplication.ui.mess.fragmnet.MessLeaveFragment;
 import com.els.myapplication.utils.WebUtil;
 
@@ -63,6 +64,25 @@ public class MessActivity extends AppCompatActivity {
                         if (num != 0){
                             send(num,2);
                         }
+                        break;
+                    }
+                    case "请假未通过" : {
+                        if (p2 != null) {
+                            num = Integer.parseInt(p2);
+                        }
+                        if (num != 0) {
+                            send(num,3);
+                        }
+                        break;
+                    }
+                    case "请假已通过" : {
+                        if (p2 != null) {
+                            num = Integer.parseInt(p2);
+                        }
+                        if (num != 0) {
+                            send(num,4);
+                        }
+                        break;
                     }
                 }
             }
@@ -100,6 +120,21 @@ public class MessActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.mess_framelayout,messInformFragment);
                     fragmentTransaction.commit();
+                    break;
+                }
+                case 3 : {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("messItem",message.obj.toString());
+                    bundle.putString("is","no");
+                    leavefeedback(bundle);
+                    break;
+                }
+                case 4 : {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("messItem",message.obj.toString());
+                    bundle.putString("is","yes");
+                    leavefeedback(bundle);
+                    break;
                 }
             }
         }
@@ -124,5 +159,14 @@ public class MessActivity extends AppCompatActivity {
                 handler.sendMessage(message);
             }
         }).start();
+    }
+
+    private void leavefeedback (Bundle bundle) {
+        MessLeaveFeedbankFragment messLeaveFeedbankFragment = new MessLeaveFeedbankFragment();
+        messLeaveFeedbankFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.mess_framelayout,messLeaveFeedbankFragment);
+        fragmentTransaction.commit();
     }
 }

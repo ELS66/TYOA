@@ -50,33 +50,43 @@ public class MyAdapter extends ListAdapter<MyItem,MyAdapter.MyViewHolder> {
                 switch (holder.textView.getText().toString()){
 
                     case "设置": {
-                        NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_navigation_user_to_employeeFragment);
+                        mynavigation(R.id.action_navigation_user_to_employeeFragment);
                         break;
                     }
                     case "请假": {
-                        NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_navigation_user_to_leaveFragment);
+                        mynavigation(R.id.action_navigation_user_to_leaveFragment);
                         break;
                     }
                     case "请假管理": {
-                        NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_navigation_user_to_manageLeaveFragment);
+                        mynavigation(R.id.action_navigation_user_to_manageLeaveFragment);
                         break;
                     }
                     case "通知": {
-                        NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_navigation_user_to_infromFragment);
+                        mynavigation(R.id.action_navigation_user_to_infromFragment);
                         break;
                     }
                     case "项目": {
-                        NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_navigation_user_to_projectHomeFragment);
+                        mynavigation(R.id.action_navigation_user_to_projectHomeFragment);
                         break;
                     }
-                    case "111": {
-                        NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_projectHomeFragment_to_projectCreateFragment);
+                    case "创建项目": {
+                        mynavigation(R.id.action_projectHomeFragment_to_projectCreateFragment);
+                        break;
+                    }
+                    case "管理项目": {
+                        mynavigation(R.id.action_projectHomeFragment_to_projectManageFragment);
+                        break;
+                    }
+                    case  "设备" : {
+                        mynavigation(R.id.action_navigation_user_to_equipmentHomeFragment);
+                        break;
+                    }
+                    case  "添加设备" : {
+                        mynavigation(R.id.action_equipmentHomeFragment_to_equipmentCreateFragment);
+                        break;
+                    }
+                    case "管理设备" : {
+                        mynavigation(R.id.action_equipmentHomeFragment_to_equipmentManageFragment);
                         break;
                     }
                 }
@@ -105,6 +115,11 @@ public class MyAdapter extends ListAdapter<MyItem,MyAdapter.MyViewHolder> {
             imageViewleft = itemView.findViewById(R.id.imageView_item_left);
             imageViewright = itemView.findViewById(R.id.imageView_item_right);
         }
+    }
+
+    private void mynavigation(int i) {
+        NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
+        navController.navigate(i);
     }
 
 }

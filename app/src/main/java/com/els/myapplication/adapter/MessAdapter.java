@@ -56,6 +56,20 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.InnerHolder> {
                         MainActivity.activity.startActivity(intent);
                         break;
                     }
+                    case "请假未通过" : {
+                        Intent intent = new Intent();
+                        Uri uri = Uri.parse("xgscheme://com.tpns.push/notify_detail?param1=请假未通过&param2=" + holder.id.getText().toString() + "&param3=" + "0");
+                        intent.setData(uri);
+                        MainActivity.activity.startActivity(intent);
+                        break;
+                    }
+                    case "请假已通过" : {
+                        Intent intent = new Intent();
+                        Uri uri = Uri.parse("xgscheme://com.tpns.push/notify_detail?param1=请假已通过&param2=" + holder.id.getText().toString() + "&param3=" + "0");
+                        intent.setData(uri);
+                        MainActivity.activity.startActivity(intent);
+                        break;
+                    }
                 }
             }
         });

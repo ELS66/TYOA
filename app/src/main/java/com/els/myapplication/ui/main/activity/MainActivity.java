@@ -1,6 +1,7 @@
 package com.els.myapplication.ui.main.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +16,12 @@ import com.els.myapplication.utils.ShpUtil;
 import com.els.myapplication.utils.WebUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.tencent.android.tpush.XGPushBaseReceiver;
 import com.tencent.android.tpush.XGPushClickedResult;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -68,6 +72,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if (intentResult != null){
+            if (intentResult.getContents() == null){
+                Toast.makeText(this,"扫码失败！",Toast.LENGTH_SHORT).show();
+            } else {
+                String result = intentResult.getContents();
+                Bundle bundle = new Bundle();
+                bundle.putString("uid",result);
+                NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+                navController.navigate(R.id.action_navigation_home_to_equipmentShowFragment,bundle);
+            }
+        }
     }
 
     @Override

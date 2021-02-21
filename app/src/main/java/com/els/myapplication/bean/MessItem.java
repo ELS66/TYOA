@@ -8,17 +8,17 @@ public class MessItem {
     private String content;
     private String date;
     private boolean islook;
-    private String feedback;
+    private String param;
     private int handler;
     private int requester;
 
-    public MessItem(int id, String title, String content, String date,boolean islook,String feedback,int handler,int requester) {
+    public MessItem(int id, String title, String content, String date,boolean islook,String param,int handler,int requester) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.date = date;
         this.islook = islook;
-        this.feedback = feedback;
+        this.param = param;
         this.handler = handler;
         this.requester = requester;
     }
@@ -67,12 +67,12 @@ public class MessItem {
         this.islook = islook;
     }
 
-    public String getFeedback() {
-        return feedback;
+    public String getParam() {
+        return param;
     }
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
+    public void setParam(String param) {
+        this.param = param;
     }
 
     public int getHandler() {

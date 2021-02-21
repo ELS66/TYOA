@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_leaveFragment"
             app:destination="@id/leaveFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_equipmentShowFragment"
+            app:destination="@id/equipmentShowFragment" />
     </fragment>
 
     <fragment
@@ -41,6 +44,9 @@
         <action
             android:id="@+id/action_navigation_user_to_projectHomeFragment"
             app:destination="@id/projectHomeFragment" />
+        <action
+            android:id="@+id/action_navigation_user_to_equipmentHomeFragment"
+            app:destination="@id/equipmentHomeFragment" />
     </fragment>
 
 
@@ -70,10 +76,58 @@
         <action
             android:id="@+id/action_projectHomeFragment_to_projectCreateFragment"
             app:destination="@id/projectCreateFragment" />
+        <action
+            android:id="@+id/action_projectHomeFragment_to_projectManageFragment"
+            app:destination="@id/projectManageFragment" />
     </fragment>
     <fragment
         android:id="@+id/projectCreateFragment"
         android:name="com.els.myapplication.ui.main.fragment.ProjectCreateFragment"
         android:label="fragment_project_create"
         tools:layout="@layout/fragment_project_create" />
+    <fragment
+        android:id="@+id/projectManageFragment"
+        android:name="com.els.myapplication.ui.main.fragment.ProjectManageFragment"
+        android:label="fragment_project_manage"
+        tools:layout="@layout/fragment_project_manage" >
+        <action
+            android:id="@+id/action_projectManageFragment_to_projectShowFragment"
+            app:destination="@id/projectShowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectShowFragment"
+        android:name="com.els.myapplication.ui.main.fragment.ProjectShowFragment"
+        android:label="fragment_project_show"
+        tools:layout="@layout/fragment_project_show" />
+    <fragment
+        android:id="@+id/equipmentHomeFragment"
+        android:name="com.els.myapplication.ui.main.fragment.EquipmentHomeFragment"
+        android:label="fragment_equipment_home"
+        tools:layout="@layout/fragment_equipment_home" >
+        <action
+            android:id="@+id/action_equipmentHomeFragment_to_equipmentCreateFragment"
+            app:destination="@id/equipmentCreateFragment" />
+        <action
+            android:id="@+id/action_equipmentHomeFragment_to_equipmentManageFragment"
+            app:destination="@id/equipmentManageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/equipmentCreateFragment"
+        android:name="com.els.myapplication.ui.main.fragment.EquipmentCreateFragment"
+        android:label="fragment_equipment_create"
+        tools:layout="@layout/fragment_equipment_create" />
+    <fragment
+        android:id="@+id/equipmentManageFragment"
+        android:name="com.els.myapplication.ui.main.fragment.EquipmentManageFragment"
+        android:label="fragment_equipment_manage"
+        tools:layout="@layout/fragment_equipment_manage" >
+        <action
+            android:id="@+id/action_equipmentManageFragment_to_equipmentShowFragment"
+            app:destination="@id/equipmentShowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/equipmentShowFragment"
+        android:name="com.els.myapplication.ui.main.fragment.EquipmentShowFragment"
+        android:label="fragment_equipment_show"
+        tools:layout="@layout/fragment_equipment_show" />
 </navigation>

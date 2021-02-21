@@ -4,6 +4,9 @@
     package="com.els.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".config.MyApplication"
@@ -14,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="n">
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="q">
         <activity android:name=".ui.reg.RegActivity" />
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
@@ -25,7 +29,6 @@
         </activity>
         <activity android:name=".ui.main.activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
-
         </activity>
         <activity android:name=".ui.mess.activity.MessActivity">
             <intent-filter>
@@ -40,6 +43,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.qccode.QrCodeActivity"/>
+
         <receiver android:name=".push.MyXGRecevier">
             <intent-filter>
 
@@ -49,6 +54,15 @@
                 <action android:name="com.tencent.android.xg.vip.action.FEEDBACK" />
             </intent-filter>
         </receiver>
+        <provider
+            android:authorities="com.els.myapplication.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.els.myapplication.ui.mess.fragmnet;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.els.myapplication.Constant;
 import com.els.myapplication.R;
 import com.els.myapplication.bean.MessItem;
 import com.google.gson.Gson;
@@ -39,9 +41,10 @@ public class MessInformFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null){
             String mess = bundle.getString("messItem");
-            String name = bundle.getString("name");
             Gson gson = new Gson();
             messItem = gson.fromJson(mess,MessItem.class);
+            String name = messItem.getParam();
+            Log.d(Constant.TAG,name);
             @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             try {
                 Date date = simpleDateFormat.parse(messItem.getDate());
@@ -51,7 +54,7 @@ public class MessInformFragment extends Fragment {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if (name.equals("0")) {
+            if (name.equals("null")) {
                 textView_name.setText("系统发送");
             } else {
                 textView_name.setText("发布人： " + name);
