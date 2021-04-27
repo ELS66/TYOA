@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.other.ChanagePassActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:background="@drawable/radious_bg"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edNowPass"
+            android:layout_width="match_parent"
+            android:background="@null"
+            android:hint="请输入当前密码"
+            android:textSize="13sp"
+            android:minHeight="48dp"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:background="@drawable/radious_bg"
+        app:layout_constraintTop_toBottomOf="@+id/lin1"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edNewPass"
+            app:layout_constraintTop_toBottomOf="@+id/edNowPass"
+            android:layout_width="match_parent"
+            android:background="@null"
+            android:hint="请输入新密码"
+            android:minHeight="48dp"
+            android:textSize="13sp"
+            android:maxLength="16"
+            android:padding="8dp"
+            android:inputType="textPassword"
+
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin3"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:background="@drawable/radious_bg"
+        app:layout_constraintTop_toBottomOf="@+id/lin2"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edNewPass2"
+            android:layout_width="match_parent"
+            android:background="@null"
+            android:hint="请确认新密码"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:textSize="13sp"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sure"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:text="确 认"
+        app:layout_constraintTop_toBottomOf="@+id/lin3"
+        android:layout_margin="40dp"
+        android:textColor="@color/white"
+        android:background="@drawable/login_bg"
+        android:layout_height="40dp"/>
+
+</LinearLayout>

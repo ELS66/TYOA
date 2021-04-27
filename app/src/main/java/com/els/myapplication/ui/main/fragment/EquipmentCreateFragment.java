@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.els.myapplication.Constant;
 import com.els.myapplication.R;
+import com.els.myapplication.ui.main.activity.MainActivity;
 import com.els.myapplication.utils.ImageSaveUtil;
 import com.els.myapplication.utils.QcCodeUtil;
 import com.els.myapplication.utils.WebUtil;
@@ -67,6 +68,7 @@ public class EquipmentCreateFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root= inflater.inflate(R.layout.fragment_equipment_create, container, false);
         init(root);
+        MainActivity.tv_title.setText("添加设备");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,7 +137,7 @@ public class EquipmentCreateFragment extends Fragment {
         imageView = view.findViewById(R.id.imageView_equipment_create);
     }
 
-    private void showListDialog(Bitmap bitmap){
+    public void showListDialog(Bitmap bitmap){
         final String[] items = {"保存至手机","分享"};
         AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
         dialog.setItems(items, new DialogInterface.OnClickListener() {

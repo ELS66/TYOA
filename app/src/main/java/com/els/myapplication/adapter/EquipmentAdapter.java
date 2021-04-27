@@ -1,5 +1,6 @@
 package com.els.myapplication.adapter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -16,11 +17,14 @@ import com.androidbuts.multispinnerfilter.KeyPairBoolData;
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
 import com.androidbuts.multispinnerfilter.SingleSpinnerListener;
 import com.androidbuts.multispinnerfilter.SingleSpinnerSearch;
+import com.els.myapplication.App;
 import com.els.myapplication.Constant;
 import com.els.myapplication.R;
 import com.els.myapplication.bean.Equipment;
 import com.els.myapplication.bean.Project;
 import com.els.myapplication.ui.main.activity.MainActivity;
+import com.els.myapplication.ui.main.equipment.EquipmentManageActivity;
+import com.els.myapplication.ui.main.equipment.EquipmentShowActivity;
 import com.els.myapplication.utils.WebUtil;
 
 import java.util.ArrayList;
@@ -28,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Handler;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.InnerHolder> {
 
@@ -46,10 +52,10 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.Inne
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("uid",holder.textView_id.getText().toString());
-                NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
-                navController.navigate(R.id.action_equipmentManageFragment_to_equipmentShowFragment,bundle);
+                Intent intent = new Intent(App.context, EquipmentShowActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("uid",holder.textView_id.getText().toString());
+                App.context.startActivity(intent);
             }
         });
         return holder;

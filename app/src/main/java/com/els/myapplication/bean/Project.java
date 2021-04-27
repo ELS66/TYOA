@@ -11,8 +11,13 @@ public class Project {
     private String equipment;
     private String startdate;
     private String enddate;
+    private String address;
+    private String longitude;
+    private String latitude;
+    private String financial;
 
-    public Project(int uid, String name, String management, String employee, String equipment, String startdate, String enddate) {
+
+    public Project(int uid, String name, String management, String employee, String equipment, String startdate, String enddate,String address ,String longitude,String latitude,String financial) {
         this.uid = uid;
         this.name = name;
         this.management = management;
@@ -20,6 +25,10 @@ public class Project {
         this.equipment = equipment;
         this.startdate = startdate;
         this.enddate = enddate;
+        this.address = address;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.financial = financial;
     }
 
     public int getUid() {
@@ -76,5 +85,37 @@ public class Project {
 
     public void setEnddate(String enddate) {
         this.enddate = enddate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getFinancial() {
+        return financial;
+    }
+
+    public void setFinancial(String financial) {
+        this.financial = financial;
     }
 }

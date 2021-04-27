@@ -52,6 +52,7 @@ public class InformFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_infrom, container, false);
         init(root);
+        MainActivity.tv_title.setText("通知");
         return root;
     }
 

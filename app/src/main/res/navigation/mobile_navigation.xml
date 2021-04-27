@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_navigation_user_to_equipmentHomeFragment"
             app:destination="@id/equipmentHomeFragment" />
+        <action
+            android:id="@+id/action_navigation_user_to_personnelFragment"
+            app:destination="@id/personnelFragment" />
     </fragment>
 
 
@@ -130,4 +133,18 @@
         android:name="com.els.myapplication.ui.main.fragment.EquipmentShowFragment"
         android:label="fragment_equipment_show"
         tools:layout="@layout/fragment_equipment_show" />
+    <fragment
+        android:id="@+id/personnelFragment"
+        android:name="com.els.myapplication.ui.main.fragment.PersonnelFragment"
+        android:label="fragment_personnel"
+        tools:layout="@layout/fragment_personnel" >
+        <action
+            android:id="@+id/action_personnelFragment_to_personnelAddFragment"
+            app:destination="@id/personnelAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personnelAddFragment"
+        android:name="com.els.myapplication.ui.main.fragment.PersonnelAddFragment"
+        android:label="fragment_personnel_add"
+        tools:layout="@layout/fragment_personnel_add" />
 </navigation>

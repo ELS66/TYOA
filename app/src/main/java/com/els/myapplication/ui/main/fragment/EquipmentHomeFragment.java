@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.els.myapplication.R;
 import com.els.myapplication.adapter.MyAdapter;
 import com.els.myapplication.bean.MyItem;
+import com.els.myapplication.ui.main.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,9 @@ public class EquipmentHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root =inflater.inflate(R.layout.fragment_equipment_home, container, false);
+            View root =inflater.inflate(R.layout.fragment_equipment_home, container, false);
         init(root);
+        MainActivity.tv_title.setText("设备");
         return root;
     }
 

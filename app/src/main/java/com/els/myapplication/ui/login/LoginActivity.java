@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.els.myapplication.Constant;
 import com.els.myapplication.R;
+import com.els.myapplication.base.BaseActivity;
 import com.els.myapplication.bean.User;
 import com.els.myapplication.ui.main.activity.MainActivity;
 import com.els.myapplication.ui.reg.RegActivity;
@@ -30,6 +31,8 @@ import com.els.myapplication.utils.MyUtil;
 import com.els.myapplication.utils.ShpUtil;
 import com.els.myapplication.utils.WebUtil;
 import com.google.gson.Gson;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.impl.LoadingPopupView;
 import com.tencent.android.tpush.NotificationAction;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushClickedResult;
@@ -49,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
     public static Activity activity;
     EditText editTextName,editTextPass;
     CheckBox checkBox;
-    Button button;
-    TextView textView;
+    TextView textView,button;
+    private LoadingPopupView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(editTextName.getText()) || TextUtils.isEmpty(editTextPass.getText())){
                     Toast.makeText(LoginActivity.this,R.string.toast_login,Toast.LENGTH_SHORT).show();
                 } else {
+                    loading();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -86,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Object o, int i) {
                                     Log.d("TPushELS","token"+o.toString());
-
                                     Map<String,String> map = new HashMap<>();
                                     map.put("user",name);
                                     map.put("pass",pass);
@@ -98,7 +101,9 @@ public class LoginActivity extends AppCompatActivity {
                                         message.what = 0;
                                     } else if (n.equals("false")){
                                         message.what = 2;
-                                    } else {
+                                    } else if (n.equals("0")){
+                                        message.what = 3;
+                                    } else  {
                                         message.what = 1;
                                         message.obj = n;
                                     }
@@ -139,28 +144,38 @@ public class LoginActivity extends AppCompatActivity {
         @SuppressLint("HandlerLeak")
         @Override
         public void handleMessage(@NonNull Message message){
-            if (message.what == 0){
-                Toast.makeText(LoginActivity.this,"因网络问题登录失败，请稍候再试",Toast.LENGTH_SHORT).show();
-            }
-            if (message.what == 1){
-                ShpUtil shpUtil = new ShpUtil(LoginActivity.this,"login");
-                if (checkBox.isChecked()){
-                    shpUtil.save("login","true");
-                } else {
-                    shpUtil.save("login","false");
+            switch (message.what) {
+                case 0 : {
+                    dismiss();
+                    Toast.makeText(LoginActivity.this,"因网络问题登录失败，请稍候再试",Toast.LENGTH_SHORT).show();
+                    break;
                 }
-                shpUtil.save("name",editTextName.getText().toString());
-                shpUtil.save("user",message.obj.toString());
+                case 1 : {
+                    ShpUtil shpUtil = new ShpUtil(LoginActivity.this,"login");
+                    if (checkBox.isChecked()){
+                        shpUtil.save("login","true");
+                    } else {
+                        shpUtil.save("login","false");
+                    }
+                    shpUtil.save("name",editTextName.getText().toString());
+                    shpUtil.save("user",message.obj.toString());
+                    dismiss();
                 /*NavController navController = Navigation.findNavController(LoginActivity.this,R.id.nav_host_fragment);
                 navController.navigate(R.id.action_loginFragment_to_employeeFragment);*/
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
-                Toast.makeText(LoginActivity.this,"yes",Toast.LENGTH_SHORT).show();
-            }
-            if (message.what == 2){
-                Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.setClass(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    Toast.makeText(LoginActivity.this,"yes",Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case 2 : {
+                    Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case 3 : {
+                    Toast.makeText(LoginActivity.this,"网络连接错误！请检查网络或联系管理员",Toast.LENGTH_SHORT).show();
+                }
             }
         }
     };
@@ -171,7 +186,27 @@ public class LoginActivity extends AppCompatActivity {
         XGPushClickedResult clickedResult = new XGPushClickedResult();
     }
 
+    private void loading() {
+        loading = new XPopup.Builder(this)
+                .dismissOnBackPressed(false)
+                .dismissOnTouchOutside(true)
+                .hasStatusBarShadow(false)
+                .hasShadowBg(false).asLoading();
+        if (!loading.isShow()) {
+            loading.show();
+        }
+    }
 
+    private void dismiss() {
+        try {
+            if (loading.isShow()) {
+                loading.dismiss();
+            }
+            loading = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

@@ -20,6 +20,7 @@ import com.els.myapplication.R;
 import com.els.myapplication.adapter.EquipmentAdapter;
 import com.els.myapplication.bean.Equipment;
 import com.els.myapplication.bean.Project;
+import com.els.myapplication.ui.main.activity.MainActivity;
 import com.els.myapplication.utils.WebUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -40,6 +41,7 @@ public class EquipmentManageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_equipment_manage, container, false);
         init(root);
+        MainActivity.tv_title.setText("设备管理");
         new Thread(new Runnable() {
             @Override
             public void run() {

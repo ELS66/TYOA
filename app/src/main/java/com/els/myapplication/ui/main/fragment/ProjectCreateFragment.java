@@ -30,6 +30,7 @@ import com.androidbuts.multispinnerfilter.SingleSpinnerSearch;
 import com.els.myapplication.Constant;
 import com.els.myapplication.R;
 import com.els.myapplication.bean.MessItem;
+import com.els.myapplication.ui.main.activity.MainActivity;
 import com.els.myapplication.utils.WebUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -74,6 +75,7 @@ public class ProjectCreateFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_project_create, container, false);
         init(root);
+        MainActivity.tv_title.setText("添加项目");
         return root;
     }
 

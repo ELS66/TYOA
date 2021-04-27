@@ -5,5 +5,18 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
-
+    <color name="black">#000</color>
+    <color name="base_blue">#017eff</color>
+    <color name="base_90">#E6017EFF</color>
+    <color name="base_white">#ffffff</color>
+    <color name="base_black">#333333</color>
+    <color name="base_red">#EA5502</color>
+    <color name="base_orange">#FF923F</color>
+    <color name="base_green">#22C226</color>
+    <color name="text_black">@color/base_black</color>
+    <color name="text_blue">@color/base_blue</color>
+    <color name="text_white">@color/base_white</color>
+    <color name="text_color">#b8b8b8</color>
+    <color name="text_b_color">#323232</color>
+    <color name="bg">#F3F3F3</color>
 </resources>

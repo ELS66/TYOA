@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.financial.FinancialDeclareActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center_vertical"
+                    android:minHeight="38dp"
+                    android:text="申报简介"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_financial_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:minHeight="38dp"
+                    android:gravity="start" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#E0E0E0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center_vertical"
+                    android:minHeight="38dp"
+                    android:text="申报详情"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_financial_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:minHeight="38dp"
+                    android:gravity="start" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#E0E0E0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center_vertical"
+                    android:minHeight="38dp"
+                    android:text="申报金额"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_financial_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:minHeight="38dp"
+                    android:gravity="start" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#E0E0E0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/financial_declare_project_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center_vertical"
+                    android:minHeight="38dp"
+                    android:text="申报项目"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_financial_declare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.4dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#E0E0E0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/login_bg"
+                    android:gravity="center"
+                    android:text="申请"
+                    android:textColor="@color/white"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

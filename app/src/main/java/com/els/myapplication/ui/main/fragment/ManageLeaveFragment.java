@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.els.myapplication.R;
+import com.els.myapplication.ui.main.activity.MainActivity;
 
 
 public class ManageLeaveFragment extends Fragment {
@@ -24,6 +25,7 @@ public class ManageLeaveFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_manage_leave, container, false);
         init(view);
+        MainActivity.tv_title.setText("请假管理");
         return view;
     }
 

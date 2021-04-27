@@ -1,5 +1,6 @@
 package com.els.myapplication.adapter;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +12,27 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.els.myapplication.App;
 import com.els.myapplication.R;
 import com.els.myapplication.bean.MyItem;
-import com.els.myapplication.config.MyApplication;
+import com.els.myapplication.ui.other.InformActivity;
 import com.els.myapplication.ui.main.activity.MainActivity;
+import com.els.myapplication.ui.main.equipment.EquipmentCreateActivity;
+import com.els.myapplication.ui.main.equipment.EquipmentHomeActivity;
+import com.els.myapplication.ui.main.equipment.EquipmentManageActivity;
+import com.els.myapplication.ui.main.personnel.PersonnelActivity;
+import com.els.myapplication.ui.main.personnel.PersonnelAddActivity;
+import com.els.myapplication.ui.main.project.MapActivity;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MyAdapter extends ListAdapter<MyItem,MyAdapter.MyViewHolder> {
+
+    MyListener myListener;
 
     public MyAdapter(){
         super(new DiffUtil.ItemCallback<MyItem>() {
@@ -36,7 +47,9 @@ public class MyAdapter extends ListAdapter<MyItem,MyAdapter.MyViewHolder> {
             }
         });
 
+
     }
+
 
     @NonNull
     @Override
@@ -62,31 +75,63 @@ public class MyAdapter extends ListAdapter<MyItem,MyAdapter.MyViewHolder> {
                         break;
                     }
                     case "通知": {
-                        mynavigation(R.id.action_navigation_user_to_infromFragment);
+                        Intent intent = new Intent(App.context, InformActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK );
+                        App.context.startActivity(intent);
                         break;
                     }
                     case "项目": {
-                        mynavigation(R.id.action_navigation_user_to_projectHomeFragment);
+                        Intent intent = new Intent(MainActivity.activity,MapActivity.class);
+                        MainActivity.activity.startActivity(intent);
                         break;
                     }
-                    case "创建项目": {
+                   /* case "创建项目": {
                         mynavigation(R.id.action_projectHomeFragment_to_projectCreateFragment);
                         break;
                     }
                     case "管理项目": {
                         mynavigation(R.id.action_projectHomeFragment_to_projectManageFragment);
                         break;
-                    }
+                    }*/
                     case  "设备" : {
-                        mynavigation(R.id.action_navigation_user_to_equipmentHomeFragment);
+                        Intent intent = new Intent(MainActivity.activity, EquipmentHomeActivity.class);
+                        MainActivity.activity.startActivity(intent);
                         break;
                     }
                     case  "添加设备" : {
-                        mynavigation(R.id.action_equipmentHomeFragment_to_equipmentCreateFragment);
+                        Intent intent = new Intent(App.context, EquipmentCreateActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK );
+                        App.context.startActivity(intent);
                         break;
                     }
                     case "管理设备" : {
-                        mynavigation(R.id.action_equipmentHomeFragment_to_equipmentManageFragment);
+                        Intent intent = new Intent(App.context, EquipmentManageActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK );
+                        App.context.startActivity(intent);
+                        break;
+                    }
+                    case "人事" : {
+                        Intent intent = new Intent(App.context, PersonnelActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                        App.context.startActivity(intent);
+                        break;
+                    }
+                    case "添加员工" : {
+                        Intent intent = new Intent(App.context, PersonnelAddActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                        App.context.startActivity(intent);
+                        break;
+                    }
+                    case  "删除员工" : {
+                        myListener.onMyListener(0);
+                        break;
+                    }
+                    case "管理权限" : {
+                        myListener.onMyListener(1);
+                        break;
+                    }
+                    case "管理员账号" : {
+                        myListener.onMyListener(2);
                         break;
                     }
                 }
@@ -98,7 +143,7 @@ public class MyAdapter extends ListAdapter<MyItem,MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final MyItem myItem = getItem(position);
-        Resources res = MyApplication.getContext().getResources();
+        Resources res = App.context.getResources();
         holder.textView.setText(myItem.getText());
         holder.imageViewright.setImageDrawable( ResourcesCompat.getDrawable(res,myItem.getDrawable_right(),null));
         holder.imageViewleft.setImageDrawable(ResourcesCompat.getDrawable(res,myItem.getDrawable_left(),null));
@@ -120,6 +165,14 @@ public class MyAdapter extends ListAdapter<MyItem,MyAdapter.MyViewHolder> {
     private void mynavigation(int i) {
         NavController navController = Navigation.findNavController(MainActivity.activity,R.id.nav_host_fragment);
         navController.navigate(i);
+    }
+
+    public interface MyListener {
+        public void onMyListener(int is);
+    }
+
+    public void setOnMyClickListener(MyListener myListener) {
+        this.myListener = myListener;
     }
 
 }

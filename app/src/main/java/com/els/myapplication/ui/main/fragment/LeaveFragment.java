@@ -38,6 +38,7 @@ public class LeaveFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_leave,container,false);
+        MainActivity.tv_title.setText("请假");
         init(root);
         textView_begin.setOnClickListener(new View.OnClickListener() {
             @Override

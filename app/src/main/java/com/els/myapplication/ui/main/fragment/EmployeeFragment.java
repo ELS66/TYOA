@@ -1,5 +1,6 @@
 package com.els.myapplication.ui.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.els.myapplication.R;
+import com.els.myapplication.ui.login.LoginActivity;
+import com.els.myapplication.ui.main.activity.MainActivity;
 import com.els.myapplication.utils.ShpUtil;
 
 public class EmployeeFragment extends Fragment {
@@ -24,7 +27,10 @@ public class EmployeeFragment extends Fragment {
             public void onClick(View view) {
                 ShpUtil shpUtil = new ShpUtil(requireContext(),"login");
                 shpUtil.clear();
-
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.activity, LoginActivity.class);
+                startActivity(intent);
+                MainActivity.activity.finish();
             }
         });
         

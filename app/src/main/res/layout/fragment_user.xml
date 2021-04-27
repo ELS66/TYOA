@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     tools:context=".ui.main.fragment.UserFragment">
 
     <View
@@ -78,5 +79,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
+
+
+   <!-- <com.els.myapplication.view.RoundImageView
+        android:id="@+id/img_circle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/head_circle"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />-->
+
+
+    <FrameLayout
+        android:id="@+id/frameHeader"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:background="@drawable/head_circle"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <ImageView
+            android:id="@+id/img_header"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:src="@mipmap/ic_default_header"
+            android:text=" "
+            android:textColor="@color/colorPrimary" />
+
+    </FrameLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

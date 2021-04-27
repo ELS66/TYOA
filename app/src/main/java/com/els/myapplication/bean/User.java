@@ -1,8 +1,8 @@
 package com.els.myapplication.bean;
 
-import java.io.Serializable;
 
-public class User implements Serializable {
+
+public class User {
     private int id;
     private String username;
     private String password;
