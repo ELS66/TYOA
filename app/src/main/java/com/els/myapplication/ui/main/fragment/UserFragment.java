@@ -59,24 +59,13 @@ public class UserFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemUserList.add(new MyItem("请假",R.drawable.item_mess,R.drawable.item_to));
-        itemUserList.add(new MyItem("设置",R.drawable.item_set,R.drawable.item_to));
-        itemBossList.add(new MyItem("设置",R.drawable.item_set,R.drawable.item_to));
-        itemBossList.add(new MyItem("人事",R.drawable.item_set,R.drawable.item_to));
-        itemBossList.add(new MyItem("通知",R.drawable.item_set,R.drawable.item_set));
-        itemBossList.add(new MyItem("项目",R.drawable.item_set,R.drawable.item_to));
-        itemBossList.add(new MyItem("设备",R.drawable.item_set,R.drawable.item_to));
         user = MainActivity.user;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_user,container,false);
-        if (MainActivity.user.getRoot() == 0) {
-            initBoss(root);
-        } else {
-            initUser(root);
-        }
+        init(root);
         image = root.findViewById(R.id.img_header);
         initimage();
         image.setOnClickListener(new View.OnClickListener() {
@@ -153,37 +142,59 @@ public class UserFragment extends Fragment {
         }
     };
 
-    private  void initUser(View view){
+    private void init(View view) {
         textname = view.findViewById(R.id.textView_user_name);
         textid = view.findViewById(R.id.textView_user_id);
         textregular = view.findViewById(R.id.textView_user_regular);
         textname.setText(user.getUsername());
         textid.setText(String.valueOf(user.getId()));
-        if (user.getRoot() == 1) {
-            textregular.setText("正式员工");
-        } else {
-            textregular.setText("临时员工");
+        switch (user.getRoot()) {
+            case 0 : {
+                textregular.setText("管理员用户");
+                break;
+            }
+            case 1 : {
+                textregular.setText("正式员工");
+                break;
+            }
+            case 2 : {
+                textregular.setText("临时员工");
+                break;
+            }
         }
-        recyclerView = view.findViewById(R.id.recyclerView_user);
-        MyAdapter myAdapter = new MyAdapter();
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        myAdapter.submitList(itemUserList);
     }
 
-    private void initBoss(View view){
-        textname = view.findViewById(R.id.textView_user_name);
-        textid = view.findViewById(R.id.textView_user_id);
-        textregular = view.findViewById(R.id.textView_user_regular);
-        textregular.setText("管理员用户");
-        recyclerView = view.findViewById(R.id.recyclerView_user);
-        textname.setText(user.getUsername());
-        textid.setText(String.valueOf(user.getId()));
-        MyAdapter myAdapter = new MyAdapter();
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        myAdapter.submitList(itemBossList);
-    }
+//    private  void initUser(View view){
+//        textname = view.findViewById(R.id.textView_user_name);
+//        textid = view.findViewById(R.id.textView_user_id);
+//        textregular = view.findViewById(R.id.textView_user_regular);
+//        textname.setText(user.getUsername());
+//        textid.setText(String.valueOf(user.getId()));
+//        if (user.getRoot() == 1) {
+//            textregular.setText("正式员工");
+//        } else {
+//            textregular.setText("临时员工");
+//        }
+//        recyclerView = view.findViewById(R.id.recyclerView_user);
+//        MyAdapter myAdapter = new MyAdapter();
+//        recyclerView.setAdapter(myAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+//        myAdapter.submitList(itemUserList);
+//    }
+//
+//    private void initBoss(View view){
+//        textname = view.findViewById(R.id.textView_user_name);
+//        textid = view.findViewById(R.id.textView_user_id);
+//        textregular = view.findViewById(R.id.textView_user_regular);
+//        textregular.setText("管理员用户");
+//        recyclerView = view.findViewById(R.id.recyclerView_user);
+//        textname.setText(user.getUsername());
+//        textid.setText(String.valueOf(user.getId()));
+//        MyAdapter myAdapter = new MyAdapter();
+//        recyclerView.setAdapter(myAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+//        myAdapter.submitList(itemBossList);
+//    }
 
     private void initimage() {
         ShpUtil shpUtil = new ShpUtil(requireContext(),"image");

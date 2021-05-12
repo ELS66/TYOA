@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
         val gson = Gson()
         user = gson.fromJson(shpUtil.load("user"),User::class.java)
         appBarConfiguration = AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_function, R.id.navigation_user)
+                R.id.navigation_home, R.id.navigation_function, R.id.meFragment)
                 .build()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(navView, navController)

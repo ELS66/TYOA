@@ -29,16 +29,16 @@ class EquipmentManageActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_equipment_manage)
-        initActionBar("设备管理",true)
+        initActionBar("设备管理", true)
         loading()
         recyclerView = findViewById(R.id.rv_equipment_manage)
-        val map : HashMap<String,Any> = HashMap()
+        val map: HashMap<String, Any> = HashMap()
         map["is"] = "1"
         val api = ApiRetrofit().getApiService()
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val res = api.equipmentmanage(map)
-                if(res.code == 200) {
+                if (res.code == 200) {
                     val equipmentlist = res.data
                     val equipmentAdapter = EquipmentAdapter(equipmentlist)
                     recyclerView.layoutManager = LinearLayoutManager(this@EquipmentManageActivity)
@@ -47,36 +47,11 @@ class EquipmentManageActivity : BaseActivity() {
                     "加载失败，请重试".showToast()
                 }
                 dismiss()
-            } catch (e : Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
                 dismiss()
             }
         }
-//        thread {
-//            val strUrl = Constant.WEB_ADDRESS + "/equipment"
-//            val map : MutableMap<String,String> =  HashMap()
-//            map["is"] = "1"
-//            val res = WebUtil.loginsend(strUrl,map)
-//            val message = Message()
-//            message.what = 0
-//            message.obj = res
-//            handler.sendMessage(message)
-//        }
     }
-
-//    val handler : Handler = object : Handler(Looper.getMainLooper()) {
-//        override fun handleMessage(msg: Message) {
-//            super.handleMessage(msg)
-//            when (msg.what) {
-//                0 -> {
-//                    val gson = Gson()
-//                    val equipmentlist : MutableList<Equipment> = gson.fromJson(msg.obj.toString(),object : TypeToken<List<Equipment>>(){}.type)
-//                    val equipmentAdapter = EquipmentAdapter(equipmentlist)
-//                    recyclerView.layoutManager = LinearLayoutManager(this@EquipmentManageActivity)
-//                    recyclerView.adapter = equipmentAdapter
-//                }
-//            }
-//        }
-//    }
 
 }

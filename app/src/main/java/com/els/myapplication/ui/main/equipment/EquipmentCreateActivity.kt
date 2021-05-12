@@ -43,29 +43,6 @@ class EquipmentCreateActivity : BaseActivity() {
         initView()
     }
 
-//    val handler : Handler = object : Handler(Looper.getMainLooper()) {
-//        override fun handleMessage(msg: Message) {
-//            super.handleMessage(msg)
-//            when(msg.what) {
-//                0 -> {
-//                    val res = msg.obj.toString().toInt()
-//                    if (res == 1) {
-//                        val bitmap = QcCodeUtil.createImage(binding.etEquipmentCreateId.text.toString().trim(),binding.etEquipmentCreateName.text.toString().trim())
-//                        bitmap?.let {
-//                            binding.tvEquipmentAdd.visibility = View.GONE
-//                            binding.ivEquipementCreate.visibility = View.VISIBLE
-//                            binding.ivEquipementCreate.setImageBitmap(it)
-//                            binding.tvEquipmentCeateToast.visibility = View.VISIBLE
-//                            binding.ivEquipementCreate.setOnClickListener {
-//
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     fun initView() {
         binding.tvEquipmentAdd.singleClick {
             if (binding.etEquipmentCreateId.text.trim().isEmpty()) {
@@ -110,19 +87,6 @@ class EquipmentCreateActivity : BaseActivity() {
                     dismiss()
                 }
             }
-//            thread {
-//                val strUrl = Constant.WEB_ADDRESS + "/equipment"
-//                val map : MutableMap<String,String> = HashMap()
-//                map["is"] = "0"
-//                map["id"] = binding.etEquipmentCreateId.text.toString().trim()
-//                map["name"] = binding.etEquipmentCreateName.text.toString().trim()
-//                map["model"] = binding.etEquipmentCreateModel.text.toString().trim()
-//                val res = WebUtil.loginsend(strUrl,map)
-//                val message = Message()
-//                message.what = 0
-//                message.obj = res
-//                handler.sendMessage(message)
-//            }
         }
     }
 

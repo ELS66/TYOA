@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvItemHomeNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="32dp"
+        android:paddingBottom="8dp"
+        android:text="关于发布2021年2月份安全记分、安全奖励和安全环保
+督查处罚情况的通知"
+        android:textColor="@color/black" />
+</LinearLayout>

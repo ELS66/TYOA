@@ -5,9 +5,9 @@ import com.els.myapplication.bean.Equipment
 import com.els.myapplication.bean.Leave
 import com.els.myapplication.bean.Project
 import com.els.myapplication.bean.User
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -70,5 +70,19 @@ interface ApiService {
     @FormUrlEncoded
     @POST("tyoa/equipment")
     suspend fun equipmentupdate (@FieldMap map: HashMap<String,Any>) : BaseResult<String>
+
+    @FormUrlEncoded
+    @POST("tyoa/financial")
+    suspend fun financialAdd (@FieldMap map: HashMap<String,Any>) : BaseResult<String>
+
+    @Multipart
+    @POST("tyoa/load")
+    suspend fun upload(@Part("uploadfile") body : RequestBody) : BaseResult<String>
+
+    @FormUrlEncoded
+    @POST("tyoa/changepass")
+    suspend fun changepass (@FieldMap map: HashMap<String,Any>) : BaseResult<String>
+
+
 
 }

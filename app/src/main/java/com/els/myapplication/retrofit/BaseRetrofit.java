@@ -35,6 +35,7 @@ public class BaseRetrofit {
             clientBuilder.retryOnConnectionFailure(true)
                     .addInterceptor(mHeaderInterceptor)
                     .addInterceptor(loggingInterceptor)
+//                    .addInterceptor(new DataEncryptInterceptor())
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(40, TimeUnit.SECONDS)
                     .writeTimeout(40, TimeUnit.SECONDS)

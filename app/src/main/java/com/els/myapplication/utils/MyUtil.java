@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MyUtil {
-    public static String md5(String str) {
+        public static String md5(String str) {
         /*if (TextUtils.isEmpty(str)){
             return "";
         }*/

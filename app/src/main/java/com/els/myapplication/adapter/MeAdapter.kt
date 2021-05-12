@@ -42,7 +42,7 @@ class MeAdapter() : BaseQuickAdapter<MeItem, BaseViewHolder>(R.layout.item_me) {
                 }
                 //财务申请
                 3 -> {
-                    "功能暂未开发".showToast()
+                    "功能暂未开放".showToast()
                 }
                 //修改密码
                 4 -> {
@@ -74,7 +74,7 @@ class MeAdapter() : BaseQuickAdapter<MeItem, BaseViewHolder>(R.layout.item_me) {
                 }
                 //财务审批
                 11 -> {
-                    "功能暂未开发".showToast()
+                    "功能暂未开放".showToast()
                 }
                 //公告
                 12 -> {

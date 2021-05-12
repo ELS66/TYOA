@@ -47,35 +47,6 @@ class ProjectShowActivity : BaseActivity() {
 
     }
 
-//    val handler : Handler = object : Handler(Looper.getMainLooper()) {
-//        override fun handleMessage(msg: Message) {
-//            when(msg.what) {
-//                0 -> {
-//                    val gson = Gson()
-//                    val strings : Array<String> = gson.fromJson(msg.obj.toString(), Array<String>::class.java)
-//                    val project = gson.fromJson<Project>(strings[0],object : TypeToken<Project>(){}.type)
-//                    val equipmentList : List<Equipment> = gson.fromJson<List<Equipment>>(strings[1],object : TypeToken<List<Equipment>>(){}.type)
-//                    if (strings[2] == "null") {
-//                        binding.projectShowLayout.visibility = View.GONE
-//                    } else {
-//                        val financialList : List<Financial> = gson.fromJson(strings[2],object : TypeToken<List<Financial>>(){}.type)
-//                        binding.rvProjectFinancial.layoutManager = LinearLayoutManager(this@ProjectShowActivity)
-//                        binding.rvProjectFinancial.adapter = ProjectFinancialAdapter(financialList)
-//                    }
-//                    binding.let {
-//                        it.tvProjectShowAddress.text = project.address
-//                        it.tvProjectShowEmployee.text = project.employee
-//                        it.tvProjectShowManage.text = project.management
-//                        it.rvProjectShow.layoutManager = LinearLayoutManager(this@ProjectShowActivity)
-//                        it.rvProjectShow.adapter = Project_EquipmentAdapter(equipmentList)
-//                    }
-//                    dismiss()
-//                }
-//            }
-//            super.handleMessage(msg)
-//        }
-//    }
-
     private fun initData(string: String) {
         val map : HashMap<String,Any> = HashMap()
         map["is"] = "3"
@@ -109,17 +80,7 @@ class ProjectShowActivity : BaseActivity() {
                 e.printStackTrace()
             }
         }
-//        thread {
-//            val strUrl = Constant.WEB_ADDRESS + "/project"
-//            val map : MutableMap<String,String> = HashMap()
-//            map["is"] = "3"
-//            map["name"] = string
-//            val res = WebUtil.loginsend(strUrl,map)
-//            val message = Message()
-//            message.what = 0
-//            message.obj = res
-//            handler.sendMessage(message)
-//        }
+
         binding.imageView2.singleClick {
             val intent = Intent(this,FinancialDeclareActivity::class.java)
             intent.putExtra("project",string)

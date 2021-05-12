@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.els.myapplication">
+    package="com.els.myapplication" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> <!-- 允许程序打开网络套接字 -->
@@ -22,8 +22,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="q">
-        <activity android:name=".ui.login.LoginNewActivity">
+        tools:targetApi="q" >
+        <activity android:name=".ui.other.AboutMeActivity" >
+        </activity>
+        <activity android:name=".test.TestActivity" >
+        </activity>
+        <activity android:name=".ui.login.LoginNewActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,13 +68,11 @@
             android:value="cb5058ccbfe9edde343c8da09e6b14f8" />
 
         <activity android:name=".ui.reg.RegActivity" />
-        <activity android:name=".ui.login.LoginActivity">
-
-        </activity>
+        <activity android:name=".ui.login.LoginActivity" />
         <activity
             android:name=".ui.main.activity.MainActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.mess.activity.MessActivity">
+        <activity android:name=".ui.mess.activity.MessActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -84,7 +86,7 @@
         </activity>
         <activity android:name=".ui.qccode.QrCodeActivity" />
 
-        <receiver android:name=".push.MyXGRecevier">
+        <receiver android:name=".push.MyXGRecevier" >
             <intent-filter>
 
                 <!-- 接收消息透传 -->
@@ -98,7 +100,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.els.myapplication.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
@@ -106,7 +108,7 @@
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.els.myapplication.fileprovider"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public" />

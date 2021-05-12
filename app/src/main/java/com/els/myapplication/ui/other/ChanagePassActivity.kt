@@ -15,11 +15,13 @@ import com.els.myapplication.Constant
 import com.els.myapplication.base.BaseActivity
 import com.els.myapplication.bean.User
 import com.els.myapplication.databinding.ActivityChanagePassBinding
+import com.els.myapplication.retrofit.ApiRetrofit
 import com.els.myapplication.showToast
-import com.els.myapplication.utils.MyUtil
-import com.els.myapplication.utils.ShpUtil
-import com.els.myapplication.utils.WebUtil
+import com.els.myapplication.utils.*
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
 class ChanagePassActivity : BaseActivity() {
@@ -38,26 +40,6 @@ class ChanagePassActivity : BaseActivity() {
         init(user.password,user.username)
     }
 
-    val handler : Handler = object  : Handler(Looper.getMainLooper()) {
-        override fun handleMessage(msg: Message) {
-            when(msg.what) {
-                0 -> {
-                    if (msg.obj.toString() == "1"){
-                        shp.clear()
-                        AlertDialog.Builder(this@ChanagePassActivity)
-                                .setTitle("修改成功")
-                                .setMessage("即将重启应用")
-                                .setNegativeButton("确定", DialogInterface.OnClickListener { dialogInterface, i ->
-                                    restartApplication(this@ChanagePassActivity)
-                                }).show()
-                    } else {
-                        "修改失败，请重试!".showToast()
-                    }
-                }
-            }
-        }
-    }
-
     fun init(pass : String,name : String) {
         binding.sure.setOnClickListener {
             if (binding.edNowPass.text.isEmpty()) {
@@ -72,10 +54,6 @@ class ChanagePassActivity : BaseActivity() {
                 "请先确认新密码".showToast()
                 return@setOnClickListener
             }
-            if (MyUtil.md5(binding.edNowPass.text.toString().trim()) != pass) {
-                "当前密码不正确,请重新输入".showToast()
-                return@setOnClickListener
-            }
             if (binding.edNowPass.text.toString().trim() == binding.edNewPass.text.toString().trim()) {
                 "当前新密码与原先密码一致,请重新输入新密码".showToast()
                 return@setOnClickListener
@@ -87,18 +65,41 @@ class ChanagePassActivity : BaseActivity() {
                 "请输入8位以上的密码".showToast()
                 return@setOnClickListener
             }
-            thread {
-                val strUrl = Constant.WEB_ADDRESS + "/changepass"
-                val map : HashMap<String,String> = HashMap()
-                val pass = MyUtil.md5(binding.edNewPass.text.toString().trim())
-                map["name"] = name
-                map["pass"] = pass
-                val res = WebUtil.loginsend(strUrl,map)
-                val message = Message()
-                message.what = 0
-                message.obj = res
-                Log.e(Constant.TAG,res)
-                handler.sendMessage(message)
+            loading()
+            val api = ApiRetrofit().getApiService()
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                    val map: HashMap<String, Any> = HashMap()
+                    val key = AesUtil.generateKey()
+                    val rsa = RsaEncryptUtil.encryptByPublicKey(key)
+                    val newpass = AesUtil.encrypt(key,binding.edNewPass.text.toString().trim())
+                    val oldpass = AesUtil.encrypt(key,binding.edNowPass.text.toString().trim())
+                    map["user"] = name
+                    map["old"] = oldpass
+                    map["new"] = newpass
+                    map["rsa"] = rsa
+                    val res = api.changepass(map)
+                    dismiss()
+                    when(res.code) {
+                        200 -> {
+                            shp.clear()
+                            AlertDialog.Builder(this@ChanagePassActivity)
+                                    .setTitle("修改成功")
+                                    .setMessage("即将重启应用")
+                                    .setNegativeButton("确定", DialogInterface.OnClickListener { dialogInterface, i ->
+                                        restartApplication(this@ChanagePassActivity)
+                                    }).show()
+                        }
+                        2 -> {
+                            "原密码错误，请重试".showToast()
+                        }
+                        else -> {
+                            "修改失败，请重试!".showToast()
+                        }
+                    }
+                } catch (e : Exception) {
+                    e.printStackTrace()
+                }
             }
 
         }

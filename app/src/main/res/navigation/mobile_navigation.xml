@@ -147,4 +147,9 @@
         android:name="com.els.myapplication.ui.main.fragment.PersonnelAddFragment"
         android:label="fragment_personnel_add"
         tools:layout="@layout/fragment_personnel_add" />
+    <fragment
+        android:id="@+id/meFragment"
+        android:name="com.els.myapplication.ui.main.fragment.MeFragment"
+        android:label="fragment_me"
+        tools:layout="@layout/fragment_me" />
 </navigation>

@@ -40,24 +40,6 @@ class LeaveActivity : BaseActivity() {
         init()
     }
 
-//    val handler : Handler = object  : Handler(Looper.getMainLooper()) {
-//        override fun handleMessage(msg: Message) {
-//            when(msg.what) {
-//                0 -> {
-//                    dismiss()
-//                    if (msg.obj.toString() != "0") {
-//                        "提交成功！".showToast()
-//                        finish()
-//                    } else {
-//                        "提交失败!".showToast()
-//                        Log.e(Constant.TAG,msg.obj.toString() )
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
-
     fun init() {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         binding.textViewLeaveBegin.setOnClickListener {
@@ -116,24 +98,6 @@ class LeaveActivity : BaseActivity() {
                     "提交失败!".showToast()
                 }
             }
-//            thread {
-//                val shpUtil = ShpUtil(this, "login")
-//                val gson = Gson()
-//                println(shpUtil.load("user"))
-//                val user = gson.fromJson(shpUtil.load("user"), User::class.java)
-//                val strUrl = Constant.WEB_ADDRESS + "/leave"
-//                val map : HashMap<String,String> = HashMap()
-//                map["is"] = "0"
-//                map["name"] = user.username
-//                map["begin"] = binding.textViewLeaveBegin.text.toString()
-//                map["end"] = binding.textViewLeaveEnd.text.toString()
-//                map["requester"] = user.id.toString()
-//                val res = WebUtil.loginsend(strUrl,map)
-//                val message = Message()
-//                message.what = 0
-//                message.obj = res
-//                handler.sendMessage(message)
-//            }
         }
     }
 }

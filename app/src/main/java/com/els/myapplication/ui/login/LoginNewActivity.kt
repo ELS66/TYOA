@@ -2,14 +2,14 @@ package com.els.myapplication.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.els.myapplication.bean.User
 import com.els.myapplication.databinding.ActivityLoginNewBinding
 import com.els.myapplication.retrofit.ApiRetrofit
 import com.els.myapplication.showToast
 import com.els.myapplication.ui.main.activity.MainActivity
-import com.els.myapplication.utils.MyUtil
-import com.els.myapplication.utils.ShpUtil
+import com.els.myapplication.utils.*
 import com.google.gson.Gson
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
@@ -50,33 +50,37 @@ class LoginNewActivity : AppCompatActivity() {
             }
             loading()
             XGPushConfig.enableDebug(this,true)
-            XGPushManager.registerPush(this,object : XGIOperateCallback {
+            XGPushManager.registerPush(this, object : XGIOperateCallback {
                 override fun onSuccess(p0: Any?, p1: Int) {
-                    val map : HashMap<String,Any> = HashMap()
+                    val map: HashMap<String, Any> = HashMap()
+                    val key = AesUtil.generateKey()
+                    val rsa = RsaEncryptUtil.encryptByPublicKey(key)
+                    val pass = AesUtil.encrypt(key, binding.editTextLoginPass.text.toString().trim())
                     map["user"] = binding.editTextLoginName.text.toString()
-                    map["pass"] = MyUtil.md5(binding.editTextLoginPass.text.toString().trim())
+                    map["pass"] = pass
                     map["token"] = p0.toString()
+                    map["rsa"] = rsa
                     val api = ApiRetrofit().getApiService()
                     CoroutineScope(Dispatchers.Main).launch {
                         try {
                             val res = api.login(map)
                             dismiss()
-                            when(res.code) {
+                            when (res.code) {
                                 -1 -> "服务器出现问题，请重试".showToast()
                                 1 -> "用户名错误，请重试".showToast()
                                 2 -> "密码错误，请重试".showToast()
                                 200 -> {
-                                    val shpUtil = ShpUtil(this@LoginNewActivity,"login")
+                                    val shpUtil = ShpUtil(this@LoginNewActivity, "login")
                                     if (binding.checkBoxLoginA.isChecked) {
-                                        shpUtil.save("login","true")
+                                        shpUtil.save("login", "true")
                                     } else {
-                                        shpUtil.save("login","false")
+                                        shpUtil.save("login", "false")
                                     }
                                     val gson = Gson()
-                                    val user : User = res.data
+                                    val user: User = res.data
                                     val str = gson.toJson(user)
-                                    shpUtil.save("name",binding.editTextLoginName.text.toString())
-                                    shpUtil.save("user",gson.toJson(res.data).toString())
+                                    shpUtil.save("name", binding.editTextLoginName.text.toString())
+                                    shpUtil.save("user", gson.toJson(res.data).toString())
                                     val intent = Intent(this@LoginNewActivity, MainActivity::class.java)
                                     startActivity(intent)
                                     finish()

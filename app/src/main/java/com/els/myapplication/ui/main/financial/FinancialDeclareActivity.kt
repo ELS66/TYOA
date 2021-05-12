@@ -10,9 +10,13 @@ import com.els.myapplication.Constant
 import com.els.myapplication.R
 import com.els.myapplication.base.BaseActivity
 import com.els.myapplication.databinding.ActivityFinancialDeclareBinding
+import com.els.myapplication.retrofit.ApiRetrofit
 import com.els.myapplication.showToast
 import com.els.myapplication.utils.ShpUtil
 import com.els.myapplication.utils.WebUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
 class FinancialDeclareActivity : BaseActivity() {
@@ -81,6 +85,32 @@ class FinancialDeclareActivity : BaseActivity() {
 //                message.obj = res
 //                handler.sendMessage(message)
 //            }
+            val map = HashMap<String,Any>()
+            val shpUtil = ShpUtil(this,"login")
+            map["is"] = "0"
+            map["name"] = binding.etFinancialName.text.toString().trim()
+            map["title"] = binding.etFinancialTitle.text.toString().trim()
+            map["money"] = binding.etFinancialMoney.text.toString().trim()
+            map["requester"] = shpUtil.load("name")
+            map["project"] = project
+            val api = ApiRetrofit().getApiService()
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                    val res = api.financialAdd(map)
+                    if (res.code == 200) {
+                        dismiss()
+                        "提交成功".showToast()
+                        finish()
+                    } else {
+                        dismiss()
+                        "提交失败".showToast()
+                    }
+                } catch (e : Exception) {
+                    e.printStackTrace()
+                    "提交失败".showToast()
+                    dismiss()
+                }
+            }
         }
         binding.tvFinancialDeclare.text = project
     }

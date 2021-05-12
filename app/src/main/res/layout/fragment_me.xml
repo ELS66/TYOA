@@ -64,12 +64,10 @@
         app:layout_constraintVertical_bias="0.5" />
 
 
-
-
     <FrameLayout
         android:id="@+id/frameHeader"
-        android:layout_width="51dp"
-        android:layout_height="51dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@drawable/head_circle"
         app:layout_constraintBottom_toBottomOf="@+id/view_user"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,8 +78,8 @@
 
         <ImageView
             android:id="@+id/img_header"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:src="@mipmap/ic_default_header"
@@ -240,16 +238,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="退出登录"-->
-<!--            android:textColor="@color/colorPrimary"-->
-<!--            android:textSize="16sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

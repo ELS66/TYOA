@@ -9,11 +9,16 @@ import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.els.myapplication.App
 import com.els.myapplication.Constant
+import com.els.myapplication.Constant.TAG
 import com.els.myapplication.R
 import com.els.myapplication.adapter.MeAdapter
+import com.els.myapplication.adapter.NoticeAdapter
+import com.els.myapplication.bean.Data
 import com.els.myapplication.bean.MeItem
+import com.els.myapplication.bean.Notice
 import com.els.myapplication.databinding.FragmentHomeBinding
 import com.els.myapplication.retrofit.ApiRetrofit
 import com.els.myapplication.showToast
@@ -41,6 +46,7 @@ class HomeFragment : Fragment() {
     private val list = mutableListOf<MeItem>()
     private val mylist = mutableListOf<MeItem>()
     private val meAdapter = MeAdapter()
+    private val noticeAdapter = NoticeAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,6 +127,11 @@ class HomeFragment : Fragment() {
         binding.tvHomeTitle.isSelected = true
         binding.rvHoemMe.layoutManager = GridLayoutManager(activity, 4)
         binding.rvHoemMe.adapter = meAdapter
+        binding.rvHomeNotice.layoutManager =LinearLayoutManager(activity)
+        binding.rvHomeNotice.adapter = noticeAdapter
+        val data = mutableListOf(Notice.Data(0,"","",1," ",1,1," ","测试内容1测试内容1测试内容1"," "),Notice.Data(0,"","",1," ",1,1," ","测试内容2测试内容2测试内容2"," "),Notice.Data(0,"","",1," ",1,1," ","测试内容3测试内容3测试内容3"," "))
+        Log.e(TAG, "initData: " + data.size )
+        noticeAdapter.setNewInstance(data)
         val map : HashMap<String,Any> = HashMap()
         map["is"] = "0"
         map["name"] = MainActivity.user!!.username

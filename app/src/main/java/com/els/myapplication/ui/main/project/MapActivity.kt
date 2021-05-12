@@ -65,18 +65,6 @@ class MapActivity : BaseActivity(),AMap.OnInfoWindowClickListener {
                 dismiss()
             }
         }
-
-//        thread {
-//            val strUrl = Constant.WEB_ADDRESS + "/project"
-//            val map: MutableMap<String, String> = HashMap()
-//            map["is"] = "2"
-//            val res = WebUtil.loginsend(strUrl, map)
-//            val message = Message()
-//            message.what = 0
-//            message.obj = res
-//            Thread.sleep(1000)
-//            handler.sendMessage(message)
-//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -88,27 +76,6 @@ class MapActivity : BaseActivity(),AMap.OnInfoWindowClickListener {
         }
         return super.onCreateOptionsMenu(menu)
     }
-
-//    var handler: Handler = object : Handler(Looper.getMainLooper()) {
-//        override fun handleMessage(msg: Message) {
-//            when (msg.what) {
-//                0 -> {
-//                    val gson = Gson()
-//                    projectList = gson.fromJson(msg.obj.toString(),object : TypeToken<List<Project>>(){}.type)
-////                    val project1 = Project(1,"一号项目","lll","ccc","111","111","111","111","116.397128","39.916527")
-////                    val project2 = Project(2,"二号项目","lll","ccc","111","111","111","111","113.6401","34.72468")
-////                    projectList = mutableListOf(project2,project1)
-//                    projectList.forEach {
-//                        val latLng = LatLng(it.latitude.toDouble(),it.longitude.toDouble())
-//                        val marker = aMap.addMarker(MarkerOptions().position(latLng).title(it.name))
-//                        marker.showInfoWindow()
-//                    }
-//                    dismiss()
-//                }
-//            }
-//            super.handleMessage(msg)
-//        }
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
